@@ -22,7 +22,7 @@ env:
   DIY_P2_SH: router-config/lede-master/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_ARMVIRT: false
-  UPLOAD_FIRMWARE: true
+  UPLOAD_Artifact: true
   UPLOAD_RELEASE: false
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
@@ -150,7 +150,7 @@ jobs:
 
     - name: Upload artifact to Actions
       uses: kittaakos/upload-artifact-as-is@master
-      if: steps.build.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: steps.build.outputs.status == 'success' && env.UPLOAD_Artifact == 'true' && !cancelled()
       with:
         path: ${{ env.PACKAGED_OUTPUTPATH }}/
 
