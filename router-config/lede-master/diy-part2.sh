@@ -26,7 +26,7 @@ sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" pa
 sed -i 's/192.168.1.1/192.168.1.254/g' package/base-files/files/bin/config_generate
 
 # Modify default root's password（FROM 'password'[$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.] CHANGE TO 'your password'）
-sed -i 's/root::0:0:99999:7:::/root:$1$QqhVmmUu$vc2OR6up3FGPVfhYdv.2T.:18883:0:99999:7:::/g' /etc/shadow
+# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 
 # Replace the default software source
 # sed -i 's#openwrt.proxy.ustclug.org#mirrors.bfsu.edu.cn\\/openwrt#' package/lean/default-settings/files/zzz-default-settings
