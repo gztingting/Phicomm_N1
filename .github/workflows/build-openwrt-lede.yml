@@ -5,7 +5,7 @@
 # Source code repository: https://github.com/coolsnowwolf/lede / Branch: master
 #========================================================================================================================
 
-name: Build OpenWrt lede
+name: Build N1 OpenWrt lede
 
 on:
   repository_dispatch:
@@ -168,6 +168,10 @@ jobs:
         ./transfer wet -s -p 16 --no-progress ${{ env.PACKAGED_OUTPUTPATH }}/{openwrt_s9xxx_*,openwrt_n1_*} 2>&1 | tee wetransfer.log
         echo "WET_URL=$(cat wetransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV
 
+    - name: Messaging bot
+      if: steps.build.outputs.status == 'success' && !cancelled()
+      run: curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=Mission Completed at ${{ env.FILE_DATE }}！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
+
     - name: Upload OpenWrt Firmware to Release
       uses: ncipollo/release-action@v1
       if: steps.build.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
@@ -179,7 +183,7 @@ jobs:
         body: |
           This is OpenWrt firmware for Amlogic S9xxx STB
           * Firmware information
-          Default IP: 192.168.1.1
+          Default IP: 192.168.1.254
           Default username: root
           Default password: password
           Default WIFI name: OpenWrt
