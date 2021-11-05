@@ -20,4 +20,5 @@ pushd package/lean
 git clone https://github.com/gztingting/luci-theme-argon-dark-mod
 git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule
 git clone https://github.com/fw876/helloworld
+svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
 popd
