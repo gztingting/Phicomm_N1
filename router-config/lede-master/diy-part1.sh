@@ -16,3 +16,8 @@
 # other
 # rm -rf package/lean/{samba4,luci-app-samba4,luci-app-ttyd}
 
+pushd package/lean
+git clone https://github.com/gztingting/luci-theme-argon-dark-mod
+git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule
+git clone https://github.com/fw876/helloworld
+popd
